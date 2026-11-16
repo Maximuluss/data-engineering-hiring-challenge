@@ -11,7 +11,7 @@ staged as (
     select
         task_id,
         title,
-        {{ initcap('category') }} as category,
+        {{ initcap('trim(category)') }} as category,
         case
             when location_id in (select distinct location_id from {{ ref('stg_locations') }})
             then location_id

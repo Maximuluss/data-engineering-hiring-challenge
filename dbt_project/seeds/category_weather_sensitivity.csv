@@ -1,0 +1,14 @@
+category,weather_sensitivity,rationale
+Gardening,1.0,Outdoor work
+Roof Cleaning,1.0,Outdoor work at height; wet or windy roofs are unsafe
+Lawn Mowing,1.0,Outdoor work; wet grass cannot be mowed
+Pool Cleaning,1.0,Outdoor work
+Exterior Painting,1.0,Outdoor work; paint needs dry conditions
+Event Setup,0.5,Often outdoors or partly outdoors
+Moving & Removals,0.5,Loading and carrying between buildings
+Photography,0.5,Mix of outdoor and indoor shoots
+Tax Return,0.0,Desk work
+Online Tutoring,0.0,Remote
+Graphic Design,0.0,Remote
+Bookkeeping,0.0,Desk work
+Cleaning,0.0,Indoor work

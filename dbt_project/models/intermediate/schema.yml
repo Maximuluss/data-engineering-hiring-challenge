@@ -1,6 +1,28 @@
 version: 2
 
-models: []
+models:
+  - name: int_hourly_weather_forecast
+    description: >
+      Hourly forecast per location, with local time derived from the location's
+      IANA timezone. Grain = one row per location_id per forecasted_at (UTC hour),
+      using the latest fetch for each hour.
+    columns:
+      - name: forecast_hour_id
+        description: Surrogate key on (location_id, forecasted_at).
+        data_tests:
+          - unique
+          - not_null
+
+  - name: int_daily_weather_forecast
+    description: >
+      Daily forecast per location, aggregated from hourly figures to recreate
+      Open-Meteo's daily variables. Grain = one row per location_id per local day.
+    columns:
+      - name: forecast_day_id
+        description: Surrogate key on (location_id, forecast_date_local).
+        data_tests:
+          - unique
+          - not_null
 
 unit_tests:
   []

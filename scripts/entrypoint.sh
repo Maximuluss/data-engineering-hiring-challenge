@@ -9,6 +9,9 @@ touch /app/.dagster/dagster.yaml
 echo "--- Generating task data ---"
 python /app/scripts/generate_tasks.py "$DUCKDB_PATH"
 
+echo "--- Installing dbt packages ---"
+cd /app/dbt_project && dbt deps --profiles-dir .
+
 echo "--- Seeding locations ---"
 cd /app/dbt_project && dbt seed --select raw_locations --profiles-dir .
 

@@ -8,6 +8,12 @@ model-paths: ["models"]
 seed-paths: ["seeds"]
 test-paths: ["tests"]
 
+vars:
+  # Risk label thresholds on the 0-100 weather_risk_score. Product tunes these;
+  # both marts read the label from fct_task_weather_risk so counts always agree.
+  weather_risk_medium_threshold: 30
+  weather_risk_high_threshold: 60
+
 seeds:
   airtasker_challenge:
     +schema: raw

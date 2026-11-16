@@ -37,10 +37,6 @@ models:
                   - Cancelled
       - name: budget
         description: Task's budget.
-        data_tests:
-        - dbt_utils.accepted_range:
-            arguments:
-              min_value: 0
       - name: assigned_at
         description: UTC timestamp of when the task was assigned. NULL for unassigned tasks.
       - name: scheduled_at

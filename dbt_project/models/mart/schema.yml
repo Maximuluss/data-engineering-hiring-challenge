@@ -1,6 +1,47 @@
 version: 2
 
-models: []
+models:
+  - name: fct_task_weather_risk
+    description: >
+      Weather risk for tasks with upcoming scheduled work (Assigned, scheduled in
+      the future). Grain = one row per task_id. Score and label logic is
+      documented at the top of the model.
+    columns:
+      - name: task_id
+        data_tests:
+          - unique
+          - not_null
+      - name: weather_risk_score
+        description: 0-100. Null when no forecast is available for the task.
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 100
+      - name: weather_risk_label
+        description: low / medium / high from the score thresholds in dbt vars; unknown when no forecast.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['low', 'medium', 'high', 'unknown']
+
+  - name: fct_location_daily_weather
+    description: >
+      Daily weather summary per location, days cut at local midnight. Grain = one
+      row per location_id per forecast_date_local.
+    columns:
+      - name: location_day_id
+        description: Surrogate key on (location_id, forecast_date_local).
+        data_tests:
+          - unique
+          - not_null
+      - name: scheduled_task_count
+        data_tests:
+          - not_null
+      - name: high_risk_task_count
+        data_tests:
+          - not_null
 
 unit_tests:
   []

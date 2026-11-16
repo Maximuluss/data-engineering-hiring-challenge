@@ -10,3 +10,25 @@ seeds:
         lat: varchar
         lng: varchar
         timezone: varchar
+
+  - name: category_weather_sensitivity
+    description: >
+      How much weather affects each task category, from 0 (not at all) to 1
+      (fully outdoor). Multiplies the weather score in fct_task_weather_risk.
+    config:
+      column_types:
+        category: varchar
+        weather_sensitivity: double
+        rationale: varchar
+    columns:
+      - name: category
+        data_tests:
+          - unique
+          - not_null
+      - name: weather_sensitivity
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
