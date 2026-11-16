@@ -2,7 +2,7 @@ location_id,city,country,lat,lng,timezone
 LOC_AU_SYD,Sydney,AU,-33.8688,151.2093,Australia/Sydney
 LOC_AU_MEL,Melbourne,AU,-37.8136,144.9631,Australia/Melbourne
 LOC_AU_BNE,Brisbane,AU,-27.4698,153.0251,Australia/Brisbane
-LOC_AU_PER,Perth,AU,115.8605,-31.9505,Australia/Perth
+LOC_AU_PER,Perth,AU,-31.9505,115.8605,Australia/Perth
 LOC_AU_ADL,Adelaide,AU,-34.9285,138.6007,Australia/Adelaide
 LOC_AU_CBR,Canberra,AU,-35.2809,149.1300,Australia/Sydney
 LOC_AU_DAR,Darwin,AU,-12.4634,130.8456,Australia/Darwin
