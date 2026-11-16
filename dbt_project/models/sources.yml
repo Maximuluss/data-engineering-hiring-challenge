@@ -23,3 +23,11 @@ sources:
             description: When the task was assigned. Missing for unassigned tasks.
           - name: scheduled_at
             description: When the work is scheduled to happen. Present on assigned tasks.
+
+      - name: raw_weather_forecast
+        description: Raw reponse from the API
+        columns:
+          - name: location_id
+          - name: fetched_at
+          - name: request_url
+          - name: response
