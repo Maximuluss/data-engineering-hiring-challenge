@@ -3,19 +3,44 @@ version: 2
 models:
   - name: stg_tasks
     description: >
-      Staging model for tasks. Should deduplicate on task_id and cast/rename
-      columns as needed. See README for known data quality issues.
+      Staging model for tasks. Grain = one row per task_id. When the raw data has
+      duplicates, we keep the task with the most recent posted_at timestamp.
+
     columns:
       - name: task_id
         description: Unique task identifier.
+        tests:
+            - unique
+            - not_null
       - name: title
+        description: Task title.
       - name: category
+        description: Task category.
       - name: location_id
         description: FK to stg_locations. May reference locations that don't exist.
+        tests:
+          - not_null
       - name: posted_at
         description: UTC timestamp of when the task was posted.
+        tests:
+          - not_null
       - name: state
+        description: Task's status.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - Open
+                  - Assigned
+                  - Completed
+                  - Cancelled
       - name: budget
+        description: Task's budget.
+        data_tests:
+        - dbt_utils.accepted_range:
+            arguments:
+              min_value: 0
       - name: assigned_at
         description: UTC timestamp of when the task was assigned. NULL for unassigned tasks.
       - name: scheduled_at
