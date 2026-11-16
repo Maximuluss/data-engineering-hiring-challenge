@@ -16,7 +16,9 @@ models:
   airtasker_challenge:
     staging:
       +materialized: view
+      +schema: stg
     intermediate:
       +materialized: view
+      +schema: int
     mart:
       +materialized: table
