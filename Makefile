@@ -51,6 +51,18 @@ test:
 dbt-run:
 	docker compose exec dagster bash -c "cd /app/dbt_project && dbt run --profiles-dir ."
 
+## Run all dbt models
+dbt-build:
+	docker compose exec dagster bash -c "cd /app/dbt_project && dbt build --profiles-dir ."
+
 ## Run all dbt tests
 dbt-test:
 	docker compose exec dagster bash -c "cd /app/dbt_project && dbt test --profiles-dir ."
+
+## Run weather-risk asset
+run-weather-risk:
+	docker compose exec dagster dagster asset materialize -m weather_risk.definitions --select raw_weather_forecast
+
+## Open the Duckdb warehouse
+open-duck:
+	duckdb ./data/challenge.duckdb
